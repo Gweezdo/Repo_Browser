@@ -62,12 +62,12 @@ async function getRepos(){
     }
   }
 
-  // result.forEach(el => {
-  //     if(el.fork != false){
-  //         console.log(el)
-  //     }
-
-  // });
+  // iterate over each repo element, create html elements, assign css classnames to html elements 
+  repo_result.forEach((el) => {
+    if (el.fork != false) {
+      console.log(el);
+    }
+  });
 
   // for loop to extract repos that is a fork
   //   for (var i = 0; i < result.length; i++) {

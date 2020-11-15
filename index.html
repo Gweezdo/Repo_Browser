@@ -3,16 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/icons/catalyst-icon.svg">
+    <meta name="description" content="This is a GitHub repository browser for software company Catalyst It"> 
     <link rel="stylesheet" href="/styles/desktop.css">
+    <link rel="stylesheet" href="/styles/mobile.css">
     <title>Catalyst Repo Browser</title>
-
 </head>
-<body>
-    <h1>Catalyst Browser - GitHub API Tests</h1>
-    <button id="btnRepos">Get Repos</button>
-    <div id="divResult">
 
-    </div>
+<body>
+    <header>
+        <div id="header-logo">
+            <svg id="catalyst-logo" title="catalyst-logo">
+                <use xlink:href="/icons/catalyst-logo.svg#c-logo"></use>
+            </svg>
+        </div>
+
+        <div id="header-btns">
+            <a id="view-blog-btn" href='#' target="_blank">View blog</a>
+            <a id="view-git-btn" href="#" target="_blank">
+                <svg class="git-icon">
+                    <use xlink:href="/icons/github-icon_24px.svg#git-icon"></use>
+                </svg>
+                <p>VIEW</p>
+            </a>
+        </div>
+    </header>
+
+
+    <section id="org-info">
+        <div class = info-container>
+            <div id="org-description">
+
+            </div>
+            <div id="org-location">
+
+            </div>
+        </div>
+        <div class="repo-filter-sort-container">
+            <div id="org-repo-no">
+
+            </div>
+
+            <div id="filter-by-container">
+                <p>Filter By</p>
+                <button id="filter-dropdown-btn">
+                    <p>Placeholder</p>
+                    <svg class="filter-sort-icon">
+                        <use xlink:href="/icons/filter-sort-icon_24px.svg#f-s-icon"></use>
+                    </svg>
+                </button>
+                <div id="filter-dropdown-content">
+                    <a class="filter-item" href="">All</a>
+                    <a class="filter-item" href="">Forked</a>
+                    <a class="filter-item" href="">Not forked</a>
+                </div>
+            </div>
+
+            <div id="sort-by-container">
+                <p>Sort By</p>
+                <button id="sort-dropdown-btn">
+                    <p>placeholder</p>
+                    <svg class="filter-sort-icon">
+                        <use xlink:href="/icons/filter-sort-icon_24px.svg#f-s-icon"></use>
+                    </svg>
+                </button>
+                <div id="sort-dropdown-content">
+                    <a class="sort-item" href="">Created Time (New to Old)</a>
+                    <a class="sort-item" href="">Created Time (Old to New)</a>
+                    <a class="sort-item" href="">Full Name (A - Z)</a>
+                    <a class="sort-item" href="">Full Name (Z - A)</a>
+                    <a class="sort-item" href="">Updated Time (New to Old)</a>
+                    <a class="sort-item" href="">Updated Time (Old to New)</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section id="repo-info">
+        <button id="btnRepos">Get Repos</button>
+        <div id="divResult">
+    
+        </div>
+
+    </section>
 
     <script src="main.js"></script>
 </body>
