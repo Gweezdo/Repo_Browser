@@ -1,21 +1,35 @@
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+
 const btnRepos = document.getElementById("btnRepos")
 btnRepos.addEventListener("click", getRepos)
 
-async function getRepos(){
-    // All information necessary to populate catalyst organisation header
-    const org_url = "https://api.github.com/orgs/catalyst";
-
-    const org_responce = await fetch(org_url);
-    const org_result = await org_responce.json();
+async function getOrgData(){
+  const org_url = "https://api.github.com/orgs/catalyst";
+  
+  const org_responce = await fetch(org_url);
+  const org_result = await org_responce.json();
+  
+  document.getElementById("org-description").innerHTML = org_result.description;
+  document.getElementById("org-location").innerHTML = org_result.location;
+  document.getElementById("org-repo-no").innerHTML = org_result.location;
+  console.log("Repo Name = " + org_result.name);
+ 
     
-    console.log("Repo Name = " + org_result.name);
-    console.log("Description = " + org_result.description);
-    console.log("Location = " + org_result.location);
     console.log("No. of Repos = " + org_result.public_repos);
     console.log("Blog url = " + org_result.blog);
     console.log("Github url = " + org_result.html_url);
     
+  }
+
+// document.getElementById("org-info").onload = getOrgData();
+
+async function getRepos(){
+  // All information necessary to populate catalyst organisation header
     
+  
     // All information necessary to populate catalyst repo list
     const repo_url =
     //   "https://api.github.com/orgs/catalyst/repos";

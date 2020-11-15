@@ -20,6 +20,8 @@ header{
     flex-direction: row;
     justify-content: space-between;
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    z-index: 1;
 }
 
 #header-logo{
@@ -87,6 +89,149 @@ header{
     top: calc(50% - 2.0rem/2);
 }
 
+#org-info{
+    color: #282828;
+}
+
+.info-container{
+    position: relative;
+    width: 100%;
+    height: 44rem;
+    background: #f1f1f1;
+    top: 8.1rem;
+   
+}
+
+#org-description{
+    position: relative;
+    display: block;
+    font-size: 3.5rem;
+    line-height: 5.6rem;
+    width: 80rem;
+    text-align: center;
+    top: 9rem;
+    left: calc(50% - 80rem/2);
+}
+
+#org-location{
+    position: relative;
+    display: block;
+    font-size: 2.4rem;
+    line-height: 3.8rem;
+    /* left: calc(50% - 31.8rem/2); */
+    top: 14rem;
+    text-align: center;
+}
+
+.repo-filter-sort-container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 85rem;
+    left: calc(50% - 85rem/2);
+    top: 10rem;
+    /* background-color: #BB2025; */
+}
+
+#org-repo-no{
+    position: relative;
+    font-size: 3.2rem;
+    height: 5.1rem;
+    line-height: 5.1rem;
+    padding: 0 1.6rem;
+    top: 2.5rem;
+    /* background-color: green; */
+    
+}
+
+#filters-container{
+    position: relative;
+    /* background: orange; */
+    display: flex;
+
+}
+
+#filter-by-container, #sort-by-container{
+    padding: 1.6rem 1.6rem;
+
+}
+
+#filter-by-container > p, #sort-by-container > p{
+    position: relative;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+}
+
+.dropdown-btn{
+    position: relative;
+    display: flex;
+    height: 4.3rem;
+    border: 0.2rem solid #696969;
+    border-radius: 0.8rem;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    cursor: pointer;
+}
+
+.dropdown-btn:focus{
+    outline: none;
+}
+
+.dropdown-btn > p{
+    position: relative;
+    float: left;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    top: calc(50% - 2.6rem/2);
+    /* background: yellow; */
+    padding-left: 1.0rem;
+}
+
+.filter-sort-icon{
+    position: relative;
+    float: right;
+    width: 2.4rem;
+    height: 2.4rem;
+    /* background: blue; */
+    top: calc(50% - 2.4rem/2);
+}
+
+.dropdown-content{
+    position: absolute;
+    height: auto;
+    display: block;
+    /* display: none; */
+    border: 0.2rem solid #696969;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+    /* border-left: 0.2rem solid #696969;
+    border-right: 0.2rem solid #696969;
+    border-bottom: 0.2rem solid #696969; */
+    background: #FFFFFF;
+}
+
+#filter-dropdown-content{
+    width: 11.3rem;
+}
+
+#sort-dropdown-content{
+    width: 22.5rem;
+}
+
+.item{
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    display: block;
+    text-decoration: none;
+    color: #282828;
+    border-radius: 0.8rem;
+}
+
+.item:hover{
+    background-color: #efefef;
+}
 
 
 
