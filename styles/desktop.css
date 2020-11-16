@@ -170,17 +170,29 @@ header{
     line-height: 2.2rem;
 }
 
+#filter-dropdown-btn{
+    border-bottom: block;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+}
+
+#sort-dropdown-btn{
+    border-bottom: block;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .dropdown-btn{
     position: relative;
     display: flex;
     height: 4.3rem;
     border: 0.2rem solid #696969;
     border-radius: 0.8rem;
-    border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     cursor: pointer;
 }
+
+
+
 
 .dropdown-btn:focus{
     outline: none;
@@ -205,11 +217,14 @@ header{
     top: calc(50% - 2.4rem/2);
 }
 
+#filter-dropdown-content{
+    display: none;
+    width: 11.3rem;
+    /* display: block; */
+}
 .dropdown-content{
     position: absolute;
     height: auto;
-    /* display: block; */
-    display: none;
     border: 0.2rem solid #696969;
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
@@ -219,12 +234,11 @@ header{
     background: #FFFFFF;
 }
 
-#filter-dropdown-content{
-    width: 11.3rem;
-}
 
 #sort-dropdown-content{
     width: 22.5rem;
+    /* display: block; */
+    display: none;
 }
 
 .item{
@@ -463,4 +477,50 @@ ul > li{
 }
 
 
+/*Navigation styles*/
+
+.navigation-container{
+    position: relative;
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: calc(50% - 50rem/2);
+    padding: 2.0rem 0rem;
+}
+
+.nav-btn{
+    position: relative;
+    background: #646464;
+    text-decoration: none;
+    border-radius: 0.8rem;
+    width: 8.5rem;
+    height: 3.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon{
+    position: relative;
+    width: 2.4rem;
+    height: 2.4rem;
+    /* background: lightblue; */
+}
+
+.nav-text{
+    position: relative;
+    font-size: 1.8rem;
+    line-height: 2.0rem;
+    color: #FFFFFF;
+    /* background: lightcoral; */
+}
+
+.first-page, .prev-page{
+    padding-right: 1rem;
+}
+
+.next-page, .last-page{
+    padding-left: 1rem;
+}
 

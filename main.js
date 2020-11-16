@@ -487,3 +487,36 @@ async function getRepos(){
   //   }
 }
 
+var filterDropdownBtn = document.getElementById("filter-dropdown-btn");
+var filterDropdownContent = document.getElementById("filter-dropdown-content");
+
+filterDropdownBtn.addEventListener("click", function(){
+  console.log(filterDropdownContent.style.display);
+  if(filterDropdownContent.style.display == "none"){
+    openFilterDropdown();
+    console.log("OPEN!!")
+  }else{
+    closeFilterDropdown();
+    console.log("close!!")
+
+  }
+});
+
+
+
+function openFilterDropdown(){
+  filterDropdownContent.style.display = "block";
+  filterDropdownBtn.style["border-bottom"] = "none";
+  filterDropdownBtn.style["border-bottom-left-radius"] = 0 + "rem";
+  filterDropdownBtn.style["border-bottom-right-radius"] = 0 + "rem";
+}
+
+function closeFilterDropdown() {
+  filterDropdownContent.style.display = "none";
+  filterDropdownBtn.style["border-bottom"] = "block";
+  filterDropdownBtn.style["border-bottom-left-radius"] = 0.8 + "rem";
+  filterDropdownBtn.style["border-bottom-right-radius"] = 0.8 + "rem";
+}
+
+
+
