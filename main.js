@@ -4,14 +4,15 @@ window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
 
-// Delete this
+
+document.getElementById("org-info").onload = getOrgData();
 document.getElementById("div-results").onload = getRepos();
+// document.getElementById("contributor-stats").onload = getContributors();
 
 
 // Function for obtaining Catalyst organisation data from github API
 async function getOrgData(){
   const org_url = "https://api.github.com/orgs/catalyst";
-  
   const org_responce = await fetch(org_url);
   const org_result = await org_responce.json();
   
@@ -21,11 +22,10 @@ async function getOrgData(){
   document.getElementById("view-blog-btn").href = org_result.blog;
   document.getElementById("view-git-btn").href = org_result.html_url;
 
-  console.log("Repo Name = " + org_result.name);
+  // console.log("Repo Name = " + org_result.name);
     
 }
-//Uncomment
-document.getElementById("org-info").onload = getOrgData();
+
 
 // Function for obtaining Catalyst repository data from github API
 async function getRepos(){
@@ -33,25 +33,14 @@ async function getRepos(){
     // All information necessary to populate catalyst repo list
     const repo_url =
     "https://api.github.com/orgs/catalyst/repos?per_page=30&type=owner";
-      // "https://api.github.com/search/repositories?q=author:catalyst repo:catalyst";
-    // "https://api.github.com/orgs/catalyst/repos?per_page=100&type=owner"; //-> change number to display less pages, 100 limit
    
     const repo_responce = await fetch(repo_url);
     const repo_result = await repo_responce.json();
     const div_results = document.getElementById("div-results");
-
-
     
     // iterate over each repo element, create html elements, assign css classnames to html elements 
     repo_result.forEach(function(i) {
-
-  
-      function date_created(){
-        //tbc
-      }
-
-
-
+      
       var repo_card = document.createElement("div");
       repo_card.className += "repo-card";
       div_results.appendChild(repo_card);
@@ -351,52 +340,56 @@ async function getRepos(){
       var day_created = date.getDate();
       var month_created = date.getMonth() + 1;
       var year_created = date.getFullYear();
-
+      
       date_text.innerHTML = "Created: " + day_created.toString() + "/" + month_created.toString() + "/" + year_created.toString();
       // date_text.innerHTML = i.created_at;
       date_stat.appendChild(date_text);
-
+      
       var contributor_stats = document.createElement("div");
       contributor_stats.className += "contributor-stats";
       repo_info_container.appendChild(contributor_stats);
-
+      
       var contributor_title = document.createElement("h6");
       contributor_title.className += "contributor-title";
       contributor_title.innerHTML = "Top Contributors:"
       contributor_stats.appendChild(contributor_title);
-
+      
       var contributor_list = document.createElement("ul");
       contributor_list.className += "contributor-list";
       contributor_stats.appendChild(contributor_list);
+      
+      var contributors_url = i.contributors_url;
+      // console.log(contributors_url)
 
-      // var contributors_url = i.contributors_url;
-      // async function get_contributors(contributors_url) {
-      //   // var contributors_url = i.contributors_url;
-      //   var cont_list = [];
-      //   const contributors_responce = await fetch(contributors_url);
-      //   const contributors_result = await contributors_responce.json();
-      //   for (var i = 0; i < contributors_result.length; i++) {
-      //     cont_list.push(contributors_result[i].login);
-      //     if (i == 4) {
-      //       break;
-      //     }
-      //   }
-      //   return cont_list;
-      // }  
-      // var contr = document.createElement("li");
-      // contr.className += "contr" + toString(i + 1);
-      // contr.innerHTML = contributors_result[i].login;
+      
+      var list = getContributors(contributors_url);
+      
+      for(var i=0; i<list.length; i++){
+        var contr = document.createElement("li");
+        contr.className += "contr" + toString(i + 1);
+        list.then((res) =>{ 
+          contr.innerHTML = res;
+          contr.appendChild(contributor_list);
+      });
+
+      }
+      list.then((res) =>{
+        console.log(res)
+      });
+      
       // var cont_list = get_contributors(contributors_url);
       // console.log(cont_list)
-    });
 
+
+    });
+    
     
     var showBtn = document.querySelectorAll(".show-info");
     var downArrow = document.querySelectorAll(".show-more-icon");
     var showText = document.querySelectorAll(".show-text");
     var btmSection = document.querySelectorAll(".btm-section");
-
-
+    
+    
     showBtn.forEach(function (element, index) {
       element.addEventListener("click", function () {
         
@@ -411,7 +404,7 @@ async function getRepos(){
         }
       });
     });
-
+    
     function rotateArrowDown(index){
       downArrow[index].style.transform = "rotate(" + 0 + "deg)";
     }
@@ -423,13 +416,13 @@ async function getRepos(){
     function showLess(index){
       showText[index].innerHTML = "Show less";
     }
-
+    
     function showMore(index) {
       showText[index].innerHTML = "Show more";
     }
-
+    
     function closeStats(index){
-        btmSection[index].style.display = 'none';
+      btmSection[index].style.display = 'none';
     }
 
     function openStats(index) {
@@ -450,22 +443,22 @@ async function getRepos(){
     // if (repo_result[index].license === null){
     //     console.log("License = none");
     // }else{
-    //     console.log("License = " + repo_result[index].license.name);
-    // }
-    
+      //     console.log("License = " + repo_result[index].license.name);
+      // }
+      
     // console.log("Date Created = " + repo_result[index].created_at);
     // console.log("Date Updated = " + repo_result[index].updated_at);
     // console.log("Full name = " + repo_result[index].full_name);
-
+    
     // test on formatting date
-  //   let date = new Date(Date.parse(repo_result[index].created_at));
-  //   console.log("date = " + date)
-  //   console.log("getDate = " + date.getDate());
+    //   let date = new Date(Date.parse(repo_result[index].created_at));
+    //   console.log("date = " + date)
+    //   console.log("getDate = " + date.getDate());
   //   console.log("getDay = " + date.getDay())
   //   console.log("getMonth = " + date.getMonth());
   //   console.log("getTime = " + date.getTime());
     
-  // var contributors_url = repo_result[index].contributors_url;
+  // var contributors_url = repo_result[i].contributors_url;
   // console.log(contributors_url);
   // const contributors_responce = await fetch(contributors_url);
   // const contributors_result = await contributors_responce.json();
@@ -473,14 +466,14 @@ async function getRepos(){
   //   console.log("Name " + i.toString() + " = " + contributors_result[i].login);
   //   console.log("Total contributions = " + contributors_result[i].contributions);
   //   if (i == 4) {
-  //     break;
-  //   }
-  // }
-
-
-  // for loop to extract repos that is a fork
-  //   for (var i = 0; i < result.length; i++) {
-  //     if (result[i].fork != false) {
+    //     break;
+    //   }
+    // }
+    
+    
+    // for loop to extract repos that is a fork
+    //   for (var i = 0; i < result.length; i++) {
+      //     if (result[i].fork != false) {
   //       console.log(i);
   //       // 9, 12, 15, 16, 23
   //     }
@@ -498,9 +491,25 @@ filterDropdownBtn.addEventListener("click", function(){
   }else{
     closeFilterDropdown();
     console.log("close!!")
-
+    
   }
 });
+
+async function getContributors(contributors_url) {
+  // var contributors_url = i.contributors_url;
+  var cont_list = [];
+  const contributors_responce = await fetch(contributors_url);
+  const contributors_result = await contributors_responce.json();
+  for (var i = 0; i < contributors_result.length; i++) {
+    cont_list.push(contributors_result[i].login);
+    // console.log("contributors_result[i].login: " + i + contributors_result[i].login);
+    if (i == 4) {
+      break;
+    }
+  }
+  // console.log(cont_list)
+  return cont_list;
+}
 
 
 
